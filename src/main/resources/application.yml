@@ -1,0 +1,13 @@
+server.port: ${PORT:9010}
+
+spring:
+  h2:
+    console:
+      enabled: true
+  application:
+    name: todo
+  datasource:
+    driverClassName: org.hsqldb.jdbc.JDBCDriver
+    url: jdbc:hsqldb:mem:todo/taskdb.script
+    username: SA
+    password:
