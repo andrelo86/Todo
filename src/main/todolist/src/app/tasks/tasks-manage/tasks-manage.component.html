@@ -1,0 +1,39 @@
+<div>
+  <nav class="navbar">
+    <div>
+      <a class="navbar-brand" href="">Mavha</a>
+      <app-new-task></app-new-task>
+      <select [(ngModel)]="selectedFilter" (change)="onChangeFilter($event)">
+        <option *ngFor="let filter of filters" [selected]="filter" [value]="filter">{{filter}}</option>
+      </select>
+    </div>
+  </nav>
+</div>
+<div class="example-container">
+  <h2>To do</h2>
+
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="pending"
+    [cdkDropListConnectedTo]="[doneList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let task of pending" cdkDrag>{{task.description}} {{task.image}}</div>
+  </div>
+</div>
+
+<div class="example-container">
+  <h2>Done</h2>
+
+  <div
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="done"
+    [cdkDropListConnectedTo]="[todoList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let task of done" cdkDrag>{{task.description}} {{task.image}}</div>
+  </div>
+
+</div>
