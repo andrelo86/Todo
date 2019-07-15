@@ -36,11 +36,12 @@ export class NewTaskComponent implements OnInit {
   }
 
   createTask() {
-    this.tasksService.save(this.task).subscribe(it => {
-      this.task = new Task();
-      this.newTaskEvent.emit(it);
-    });
-    this.reloadComponent();  
-  }
+      this.tasksService.save(this.task).subscribe(it => {
+        this.task = new Task();
+        this.newTaskEvent.emit(it);
+      }, (error) => {},
+       () => {this.reloadComponent();
+       });
+    }
 
 }
